@@ -4,12 +4,16 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	_, _ := sql.Open("postgres", `dbname=mari host=localhost user=postgres password=postgres`)
+	_, err := sql.Open("postgres", `dbname=mari host=localhost user=postgres password=postgres`)
+	dieIf(err)
+
+	fmt.Println("connected")
 }
 
 func dieIf(err error) {
